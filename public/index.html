@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiftGenie - AI-Powered Gift Recommendations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <div class="container">
+                    <div class="header-announcement">
+                        <i class="fas fa-sparkles"></i>
+                        <span>Free shipping on orders over $50 • AI-powered recommendations</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-main">
+                <div class="container">
+                    <nav class="navbar">
+                        <div class="logo">
+                            <i class="fas fa-gift"></i>
+                            <span>GiftGenie</span>
+                        </div>
+                        <div class="nav-center">
+                            <div class="search-container">
+                                <input type="text" id="globalSearch" placeholder="Search for the perfect gift...">
+                                <button class="search-btn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="nav-right">
+                            <button class="nav-btn" id="recommendBtn">
+                                <i class="fas fa-magic"></i>
+                                <span>Get Recommendations</span>
+                            </button>
+                            <button class="nav-btn" id="browseBtn">
+                                <i class="fas fa-th-large"></i>
+                                <span>Browse All</span>
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Find the Perfect Gift with AI</h1>
+                <p>Discover unique, personalized gifts that your loved ones will treasure. Our AI analyzes preferences to recommend the ideal present every time.</p>
+                <div class="hero-actions">
+                    <button class="cta-btn primary" id="heroRecommendBtn">
+                        <i class="fas fa-magic"></i>
+                        Get AI Recommendations
+                    </button>
+                    <button class="cta-btn secondary" id="heroBrowseBtn">
+                        <i class="fas fa-th-large"></i>
+                        Browse All Gifts
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-gifts">
+                    <div class="gift-item gift-1">🎁</div>
+                    <div class="gift-item gift-2">💝</div>
+                    <div class="gift-item gift-3">🎂</div>
+                    <div class="gift-item gift-4">🌹</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Navigation -->
+        <section class="category-nav">
+            <div class="container">
+                <h2>Shop by Category</h2>
+                <div class="category-grid">
+                    <button class="category-card" data-category="electronics">
+                        <div class="category-icon">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <span>Electronics</span>
+                    </button>
+                    <button class="category-card" data-category="home">
+                        <div class="category-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <span>Home & Decor</span>
+                    </button>
+                    <button class="category-card" data-category="fashion">
+                        <div class="category-icon">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <span>Fashion</span>
+                    </button>
+                    <button class="category-card" data-category="fitness">
+                        <div class="category-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <span>Fitness</span>
+                    </button>
+                    <button class="category-card" data-category="books">
+                        <div class="category-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <span>Books</span>
+                    </button>
+                    <button class="category-card" data-category="hobbies">
+                        <div class="category-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <span>Hobbies</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products -->
+        <section class="featured-products">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Featured Gifts</h2>
+                    <p>Handpicked recommendations just for you</p>
+                </div>
+                <div class="product-filters">
+                    <div class="filter-group">
+                        <label>Category</label>
+                        <select id="categoryFilter">
+                            <option value="">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="books">Books</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="home">Home & Decor</option>
+                            <option value="fitness">Fitness</option>
+                            <option value="hobbies">Hobbies</option>
+                            <option value="beauty">Beauty</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Price Range</label>
+                        <select id="priceFilter">
+                            <option value="">All Prices</option>
+                            <option value="0-50">Under $50</option>
+                            <option value="50-100">$50 - $100</option>
+                            <option value="100-200">$100 - $200</option>
+                            <option value="200+">$200+</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Sort By</label>
+                        <select id="sortFilter">
+                            <option value="relevance">Relevance</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name A-Z</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="productGrid" class="product-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+                <div class="load-more-container">
+                    <button class="load-more-btn" id="loadMoreBtn">
+                        <i class="fas fa-plus"></i>
+                        Load More Gifts
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 GiftGenie - AI-Powered Gift Recommendations</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
