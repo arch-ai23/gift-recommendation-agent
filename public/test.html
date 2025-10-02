@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiftGenie Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        #products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; }
+        .product { border: 1px solid #ddd; padding: 15px; border-radius: 8px; background: white; }
+        .product h3 { margin: 0 0 10px 0; color: #333; }
+        .product .price { font-size: 1.2em; font-weight: bold; color: #e74c3c; }
+        .product .category { color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>🎁 GiftGenie Test Page</h1>
+    
+    <div class="test" id="status">Testing JavaScript...</div>
+    
+    <div>
+        <button onclick="testSearch()">Test Search</button>
+        <button onclick="testFilter()">Test Filter</button>
+        <button onclick="loadProducts()">Load Products</button>
+    </div>
+    
+    <div>
+        <input type="text" id="searchInput" placeholder="Search products..." style="padding: 10px; width: 300px; margin: 10px 0;">
+    </div>
+    
+    <div id="products"></div>
+
+    <script>
+        // Simple test version
+        const products = [
+            { id: 1, name: "Wireless Headphones", category: "electronics", price: 79.99, description: "High-quality wireless headphones" },
+            { id: 2, name: "Smart Watch", category: "electronics", price: 199.99, description: "Fitness tracking smartwatch" },
+            { id: 3, name: "Novel", category: "books", price: 15.99, description: "Bestselling fiction novel" },
+            { id: 4, name: "Designer Scarf", category: "fashion", price: 89.99, description: "Premium silk scarf" },
+            { id: 5, name: "Yoga Mat", category: "fitness", price: 39.99, description: "Premium yoga mat set" }
+        ];
+
+        function updateStatus(message, isError = false) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = isError ? 'test error' : 'test success';
+        }
+
+        function loadProducts() {
+            const container = document.getElementById('products');
+            container.innerHTML = products.map(product => `
+                <div class="product">
+                    <h3>${product.name}</h3>
+                    <div class="category">${product.category}</div>
+                    <div class="price">$${product.price}</div>
+                    <p>${product.description}</p>
+                </div>
+            `).join('');
+            updateStatus(`Loaded ${products.length} products successfully!`);
+        }
+
+        function testSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(searchTerm) || 
+                p.description.toLowerCase().includes(searchTerm)
+            );
+            
+            const container = document.getElementById('products');
+            container.innerHTML = filtered.map(product => `
+                <div class="product">
+                    <h3>${product.name}</h3>
+                    <div class="category">${product.category}</div>
+                    <div class="price">$${product.price}</div>
+                    <p>${product.description}</p>
+                </div>
+            `).join('');
+            
+            updateStatus(`Found ${filtered.length} products matching "${searchTerm}"`);
+        }
+
+        function testFilter() {
+            const electronics = products.filter(p => p.category === 'electronics');
+            const container = document.getElementById('products');
+            container.innerHTML = electronics.map(product => `
+                <div class="product">
+                    <h3>${product.name}</h3>
+                    <div class="category">${product.category}</div>
+                    <div class="price">$${product.price}</div>
+                    <p>${product.description}</p>
+                </div>
+            `).join('');
+            updateStatus(`Filtered to ${electronics.length} electronics products`);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStatus('JavaScript is working! Page loaded successfully.');
+            loadProducts();
+        });
+
+        // Search as you type
+        document.getElementById('searchInput').addEventListener('input', testSearch);
+    </script>
+</body>
+</html>
